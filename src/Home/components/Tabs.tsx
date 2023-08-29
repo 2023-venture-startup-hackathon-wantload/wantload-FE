@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface TabsProps {
   selectedTool: string;
@@ -9,20 +9,20 @@ export default function Tabs({ selectedTool, setSelectedTool }: TabsProps) {
   return (
     <Tabbar>
       <TabButton
-        isselected={selectedTool === 'recommend'}
-        onClick={() => setSelectedTool('recommend')}
+        isselected={selectedTool === "recommend"}
+        onClick={() => setSelectedTool("recommend")}
       >
-        진영추천
+        원트추천
       </TabButton>
       <TabButton
-        isselected={selectedTool === 'new'}
-        onClick={() => setSelectedTool('new')}
+        isselected={selectedTool === "new"}
+        onClick={() => setSelectedTool("new")}
       >
         신상품
       </TabButton>
       <TabButton
-        isselected={selectedTool === 'best'}
-        onClick={() => setSelectedTool('best')}
+        isselected={selectedTool === "best"}
+        onClick={() => setSelectedTool("best")}
       >
         베스트
       </TabButton>
@@ -43,12 +43,12 @@ const TabButton = styled.button<{ isselected: boolean }>`
   width: 120px;
   height: 36px;
   border-bottom: ${(props) =>
-    props.isselected ? '1.5px solid #ff9900' : '1px solid #d9d9d9'};
-  color: ${(props) => (props.isselected ? '#ff9900' : '#D9D9D9')};
+    props.isselected ? "2px solid #ff9900" : "1px solid #d9d9d9"};
+  color: ${(props) => (props.isselected ? "#ff9900" : "#D9D9D9")};
   text-align: center;
   font-family: Noto Sans;
   font-size: 12px;
   font-style: normal;
-  font-weight: ${(props) => (props.isselected ? 700 : 400)};
+  font-weight: ${(props) => (props.isselected ? 700 : 600)};
   line-height: 140%;
 `;
