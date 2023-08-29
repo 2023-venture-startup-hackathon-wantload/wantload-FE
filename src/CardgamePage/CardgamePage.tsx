@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Header from '../Home/components/Header';
-import Card from './components/Card';
-import { ReactComponent as Clock } from '../assets/icon/icon_clock.svg';
-// import Card from './components/Card';
-import { getRandomCards } from '../data/function';
-import NextButton from './components/NextButton';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Header from "../Home/components/Header";
+import Card from "./components/Card";
+import { ReactComponent as Clock } from "../assets/icon/icon_clock.svg";
+import { getRandomCards } from "../data/function";
+import NextButton from "./components/NextButton";
+import { useRecoilState } from "recoil";
+import { fortuneItemList } from "../recoil/fortuneItemList";
 
 const CardgamePage = () => {
   const MINUTES_IN_MS = 0.5 * 60 * 1000;
@@ -22,12 +23,13 @@ const CardgamePage = () => {
     INITIAL_SAME_CARD_COUNT,
   );
   const [correctCard, setCorrectCard] = useState<number[]>([]);
-
+  const [fortuneItems, setFortuneItems] = useRecoilState(fortuneItemList);
+  console.log("fortuneItems:", fortuneItems);
   const minutes = String(Math.floor((time / (1000 * 60)) % 60)).padStart(
     2,
-    '0',
+    "0",
   );
-  const second = String(Math.floor((time / 1000) % 60)).padStart(2, '0');
+  const second = String(Math.floor((time / 1000) % 60)).padStart(2, "0");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,8 +38,9 @@ const CardgamePage = () => {
 
     if (time <= 0) {
       clearInterval(timer);
-      console.log('게임이 종료되었습니다.');
+      console.log("게임이 종료되었습니다.");
       console.log(sameCardCount);
+      setFortuneItems(fortuneItems);
     }
     return () => {
       clearInterval(timer);
@@ -45,7 +48,7 @@ const CardgamePage = () => {
   }, [time]);
 
   useEffect(() => {
-    const cards = getRandomCards();
+    const cards = getRandomCards(fortuneItems);
     setCardList(cards);
     setCorrectCard(Array.from({ length: 16 }, (_, index) => index));
 
@@ -81,6 +84,10 @@ const CardgamePage = () => {
       }, 1000);
     }
   };
+
+  if (fortuneItems.length === 0) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
