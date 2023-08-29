@@ -34,8 +34,8 @@
     "rules": {
         "prettier/prettier": [
             "error", {
-                "endOfLine": "auto",
-                "singleQuete": false
+                "singleQuote": false,
+                "endOfLine": "auto"
             }
         ]
     }
