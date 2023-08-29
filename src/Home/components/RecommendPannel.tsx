@@ -2,6 +2,7 @@ import styled from "styled-components";
 import ItemSwiper from "./RecommendPannel/ItemSwiper";
 import Tag from "./RecommendPannel/Tag";
 import HotItem from "./RecommendPannel/HotItem";
+import Bullet from "./RecommendPannel/Bullet";
 
 export default function RecommendPannel() {
   return (
@@ -9,6 +10,9 @@ export default function RecommendPannel() {
       <SwiperContainer>
         <ItemSwiper />
       </SwiperContainer>
+      <PaginationContainer>
+        <Bullet />
+      </PaginationContainer>
       <Tag />
       <HotItemContainer>
         <div
@@ -48,6 +52,15 @@ const SwiperContainer = styled.div`
   /* justify-content: 'center';
   align-items: 'center'; */
   /* background: yellow; */
+`;
+
+const PaginationContainer = styled.div`
+  width: 375px;
+  height: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: red; */
 `;
 
 const HotItemContainer = styled.div`
