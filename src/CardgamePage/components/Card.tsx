@@ -1,6 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { CARD_IMG } from '../../data/variable';
+import React from "react";
+import { useRecoilValue } from "recoil";
+import styled from "styled-components";
+import { fortuneItemList } from "../../recoil/fortuneItemList";
 
 interface CardProps {
   card: number;
@@ -9,14 +10,19 @@ interface CardProps {
 }
 
 const Card = ({ card, isFlipped, onClick }: CardProps) => {
+  const fortuneItems = useRecoilValue(fortuneItemList);
+  console.log("fortuneItems : ", fortuneItems);
+  const imgList = fortuneItems.map((item) => item.fortunePhoto);
+  console.log("imgList : ", imgList);
+
   return (
     <FlipCard>
-      <div className={`card ${isFlipped ? 'active' : ''}`} onClick={onClick}>
+      <div className={`card ${isFlipped ? "active" : ""}`} onClick={onClick}>
         <div className="front">
-          <img src={CARD_IMG[card]} alt="카드 뒷면" />
+          <img src={imgList[card]} alt="카드 뒷면" />
         </div>
         <div className="back">
-          <img src={'assets/card/paws.png'} alt="카드 뒷면" />
+          <img src={"assets/card/paws.png"} alt="카드 뒷면" />
         </div>
       </div>
     </FlipCard>
