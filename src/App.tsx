@@ -1,13 +1,18 @@
 import React from 'react';
-import './App.css';
-import Puzzle from './components/Puzzle';
+// import Puzzle from './components/Puzzle';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Home/Home';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Puzzle />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;
