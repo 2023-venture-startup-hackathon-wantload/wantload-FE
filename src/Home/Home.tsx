@@ -8,12 +8,9 @@ import NewPannel from "./components/NewPannel";
 import { useQuery } from "react-query";
 import { getFortuneItems } from "../api/fortuneController";
 import { FortuneProductData } from "../data/type";
-import { useRecoilState } from "recoil";
-import { fortuneItemList } from "../recoil/fortuneItemList";
 
 const Home: React.FC = () => {
   const [selectedTool, setSelectedTool] = useState("recommend");
-  const [fortuneItems, setFortuneItems] = useRecoilState(fortuneItemList);
 
   const { data, isLoading, isError } = useQuery<FortuneProductData[]>(
     "get-fortune-items",
@@ -29,8 +26,7 @@ const Home: React.FC = () => {
   }
 
   if (data) {
-    setFortuneItems(data);
-    console.log("------Fortune Items------>", fortuneItems);
+    console.log("------Fortune Items------>", data);
   }
 
   return (

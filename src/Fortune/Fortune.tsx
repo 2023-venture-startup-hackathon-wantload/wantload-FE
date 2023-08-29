@@ -1,7 +1,7 @@
-import React from 'react';
-import Header from '../Home/components/Header';
-import Jackpot from './components/JackPot';
-import styled from 'styled-components';
+import React from "react";
+import Header from "../Home/components/Header";
+import Jackpot from "./components/JackPot";
+import styled from "styled-components";
 
 const Fortune: React.FC = () => {
   return (
@@ -35,7 +35,7 @@ const JackpotGuide = styled.div`
   width: 315px;
   height: 95px;
   color: #000;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;

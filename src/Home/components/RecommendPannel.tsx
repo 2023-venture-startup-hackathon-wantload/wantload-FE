@@ -48,7 +48,7 @@ const StyledRecommendPannel = styled.div`
 const SwiperContainer = styled.div`
   width: 375px;
   display: "flex";
-  /* padding: 22px; */
+  padding: 22px;
   /* justify-content: 'center';
   align-items: 'center'; */
   /* background: yellow; */
