@@ -1,6 +1,7 @@
-import { baseAxios } from './baseAxios';
+import { CATEGORY_TYPE } from "../data/type";
+import { baseAxios } from "./baseAxios";
 
-export const getCategoryItems = async (itemType: string) => {
+export const getCategoryItems = async (itemType: CATEGORY_TYPE) => {
   const response = await baseAxios
     .get(`/api/item/${itemType}`)
     .then((response) => response.data.data);

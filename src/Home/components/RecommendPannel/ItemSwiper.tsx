@@ -6,24 +6,12 @@ import "swiper/css/pagination";
 import "./swiper.css";
 import SwiperCore from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 SwiperCore.use([Navigation, Pagination]);
 
 export default function ItemSwiper() {
-  // const slides = [
-  //   {
-  //     id: 1,
-  //     img: "/assets/swiper/swiper1.jpeg",
-  //   },
-  //   {
-  //     id: 2,
-  //     img: "/assets/swiper/swiper2.jpeg",
-  //   },
-  //   {
-  //     id: 3,
-  //     img: "/assets/swiper/swiper3.jpeg",
-  //   },
-  // ];
+  const navigate = useNavigate();
 
   return (
     <Swiper
@@ -47,6 +35,9 @@ export default function ItemSwiper() {
         <img
           src="/assets/swiper/swiper3.png"
           style={{ width: "375px", height: "358px" }}
+          onClick={() => {
+            navigate("/event");
+          }}
         />
       </SwiperSlide>
     </Swiper>

@@ -3,8 +3,34 @@ import ItemSwiper from "./RecommendPannel/ItemSwiper";
 import Tag from "./RecommendPannel/Tag";
 import HotItem from "./RecommendPannel/HotItem";
 import Bullet from "./RecommendPannel/Bullet";
+import { useEffect, useState } from "react";
+import { CATEGORY_TYPE, FortuneProductData } from "../../data/type";
+import { useQuery } from "react-query";
+import { getFortuneItems } from "../../api/fortuneController";
 
 export default function RecommendPannel() {
+  const [category, setCategory] = useState<CATEGORY_TYPE>("HOME");
+  const { data, isLoading, isError } = useQuery<FortuneProductData[]>(
+    "get-fortune-items",
+    () => getFortuneItems(),
+  );
+
+  if (isError) {
+    console.log("Error while get Fortune Data.");
+  }
+  if (isLoading) {
+    console.log("Loading get Fortune Data...");
+  }
+  if (data) {
+    console.log("get fortune success ====> ", data);
+  }
+
+  useEffect(() => {
+    {
+      console.log("category change : ", category);
+    }
+  }, [category]);
+
   return (
     <StyledRecommendPannel>
       <SwiperContainer>
@@ -13,12 +39,12 @@ export default function RecommendPannel() {
       <PaginationContainer>
         <Bullet />
       </PaginationContainer>
-      <Tag />
+      <Tag isSelected={category} setIsSelected={setCategory} />
       <HotItemContainer>
         <div
           style={{
             color: "#000",
-            fontFamily: "Noto Sans",
+            fontFamily: "Pretendard",
             fontSize: "18px",
             fontStyle: "normal",
             fontWeight: 600,
@@ -29,7 +55,7 @@ export default function RecommendPannel() {
         >
           블랙프라이데이 인기 상품
         </div>
-        <HotItem />
+        <HotItem category={category} fortune={data !== undefined ? data : []} />
       </HotItemContainer>
     </StyledRecommendPannel>
   );
@@ -46,8 +72,8 @@ const StyledRecommendPannel = styled.div`
 `;
 
 const SwiperContainer = styled.div`
-  width: 375px;
-  display: "flex";
+  width: 100%;
+  display: flex;
   padding: 22px;
   /* justify-content: 'center';
   align-items: 'center'; */
@@ -55,7 +81,7 @@ const SwiperContainer = styled.div`
 `;
 
 const PaginationContainer = styled.div`
-  width: 375px;
+  width: 100%;
   height: 33px;
   display: flex;
   justify-content: center;

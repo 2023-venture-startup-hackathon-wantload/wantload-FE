@@ -1,29 +1,56 @@
-import React from 'react';
-import styled from 'styled-components';
-import Header from '../Home/components/Header';
-import { ReactComponent as Carrot } from '../assets/icon/icon_carrot.svg';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import Header from "../Home/components/Header";
+import { FortuneProductData, FORTUNE_TYPE } from "../data/type";
+import Heart from "../assets/icon/icon_love.svg";
+import Money from "../assets/icon/icon_money.svg";
+import Thumbs from "../assets/icon/icon_thumbs_up.svg";
 
-const FortuneResultPage = () => {
+const FortuneResultPage = ({
+  fortune,
+  itemList,
+}: {
+  fortune: FORTUNE_TYPE;
+  itemList: FortuneProductData[];
+}) => {
+  const [randomIndex, setRandomIndex] = useState(0);
+
+  useEffect(() => {
+    setRandomIndex(Math.floor(Math.random() * itemList.length));
+  }, []);
+  const randomItem = itemList[randomIndex];
+
+  const getToday = () => {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+    return `${year}년 ${month}월 ${day}일 오늘의 운세`;
+  };
+
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <Header />
       <FortuneResultContainer>
         <FortuneResultArea>
-          <Carrot className="fortune-img" />
+          <img
+            className="fortune-img"
+            src={
+              fortune === "LOVE" ? Heart : fortune === "MONEY" ? Money : Thumbs
+            }
+          />
           <div className="fortune-header">
-            09월 29일 오늘의 운세
-            <div className="fortune-title">가는 곳마다 사랑받네요</div>
+            {getToday()}
+            <div className="fortune-title">{randomItem.bigTitle}</div>
           </div>
+          <div
+            style={{ width: "100%", height: "8px", backgroundColor: "#F5F6F8" }}
+          />
           <div className="fortune-body">
-            <img
-              className="product-img"
-              src="https://media.bunjang.co.kr/product/166403645_1_1633647211_w360.jpg"
-            />
-            <div className="product-tag">#애정운이 높게 유지되는 상품</div>
-            <div className="product-text">
-              사랑의 기운이 샘솟을 수 있는 날입니다! 오렌지 색상의 원피스를
-              입어보세요. 그 어떤 사람보다 당신이 빛나 보일 테니까요.
-            </div>
+            <div className="product-header">이런 상품 어때요?</div>
+            <img className="product-img" src={randomItem.fortunePhoto} />
+            <div className="product-img-title">{randomItem.smallTitle}</div>
+            <div className="product-text">{randomItem.comments}</div>
           </div>
         </FortuneResultArea>
       </FortuneResultContainer>
@@ -41,52 +68,67 @@ const FortuneResultContainer = styled.div`
 `;
 
 const FortuneResultArea = styled.div`
-  padding: 0 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   & .fortune-img {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
   & .fortune-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 41px;
+    margin-top: 29px;
     font-size: 18px;
     font-weight: 500;
     & .fortune-title {
-      font-size: 22px;
+      margin-top: 4px;
+      font-size: 24px;
       font-weight: 600;
+      margin-bottom: 53px;
+      width: 250px;
+      word-break: keep-all;
+      text-align: center;
     }
   }
   & .fortune-body {
     width: 100%;
-    border-radius: 8px;
-    border: 0.3px solid #aeaeae;
-    padding: 10px 14px 13px;
     margin-top: 36px;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 60px;
 
-    & .product-img {
-      width: 130px;
-      height: 130px;
-    }
-
-    & .product-tag {
+    & .product-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       font-size: 16px;
       font-weight: 600;
-      margin: 13px auto;
+    }
+
+    & .product-img {
+      margin-top: 36px;
+      width: 180px;
+      height: 180px;
+      border-radius: 15px;
+    }
+
+    & .product-img-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin: 11px auto;
     }
     & .product-text {
-      font-size: 12px;
-      font-weight: 500;
+      margin-top: 25px;
+      font-size: 13px;
+      font-weight: 400;
       white-space: pre-wrap;
     }
   }

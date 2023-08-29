@@ -1,28 +1,22 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { fortuneItemList } from "../../recoil/fortuneItemList";
+import { ReactComponent as Logo } from "../../assets/icon/icon_logo.svg";
 
 interface CardProps {
-  card: number;
+  img: string;
   isFlipped: boolean;
   onClick: () => void;
 }
 
-const Card = ({ card, isFlipped, onClick }: CardProps) => {
-  const fortuneItems = useRecoilValue(fortuneItemList);
-  console.log("fortuneItems : ", fortuneItems);
-  const imgList = fortuneItems.map((item) => item.fortunePhoto);
-  console.log("imgList : ", imgList);
-
+const Card = ({ img, isFlipped, onClick }: CardProps) => {
   return (
     <FlipCard>
       <div className={`card ${isFlipped ? "active" : ""}`} onClick={onClick}>
         <div className="front">
-          <img src={imgList[card]} alt="카드 뒷면" />
+          <img src={img} alt="카드 앞면" />
         </div>
         <div className="back">
-          <img src={"assets/card/paws.png"} alt="카드 뒷면" />
+          <Logo />
         </div>
       </div>
     </FlipCard>
@@ -30,11 +24,12 @@ const Card = ({ card, isFlipped, onClick }: CardProps) => {
 };
 
 const FlipCard = styled.div`
-  width: 78.25px;
+  width: 70px;
   height: 92px;
   border-radius: 8px;
   position: relative;
   perspective: 1100px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   & .card {
     width: 100%;
@@ -63,17 +58,20 @@ const FlipCard = styled.div`
       & img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         border-radius: 8px;
       }
     }
 
     & .front {
-      background-color: black;
+      /* background-color: black; */
     }
 
     & .back {
-      background-color: white;
+      background-color: rgba(255, 153, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transform: rotateY(180deg);
     }
   }

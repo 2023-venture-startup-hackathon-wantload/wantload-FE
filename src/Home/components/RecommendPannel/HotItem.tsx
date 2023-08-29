@@ -1,64 +1,79 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { getCategoryItems } from "../../../api/itemController";
+import {
+  CATEGORY_TYPE,
+  FortuneProductData,
+  MainProductData,
+} from "../../../data/type";
 
-export default function HotItem() {
-  const HotItemList = [
-    {
-      id: 1,
-      img: '/assets/swiper/swiper1.jpeg',
-      name: '코리안 파스타',
-      price: '10,000원',
-      delivery: '진영배송',
-    },
-    {
-      id: 2,
-      img: '/assets/swiper/swiper2.jpeg',
-      name: '코리안 파스타2',
-      price: '20,000원',
-      delivery: '진영배송',
-    },
-    {
-      id: 3,
-      img: '/assets/swiper/swiper3.jpeg',
-      name: '코리안 파스타',
-      price: '30,000원',
-      delivery: '진영배송',
-    },
-  ];
+const HotItem = ({
+  category,
+  fortune,
+}: {
+  category: CATEGORY_TYPE;
+  fortune: FortuneProductData[];
+}) => {
+  const navigate = useNavigate();
+  const { data, isLoading, isError } = useQuery<MainProductData[]>(
+    ["get-category-items", category],
+    () => getCategoryItems(category),
+  );
+
+  if (isError) {
+    return <div>에러 발생</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading..</div>;
+  }
+
   return (
     <HotItemBox>
-      {HotItemList.map((item) => (
-        <HotItemPiece key={item.id}>
+      {data?.map((item) => (
+        <HotItemPiece
+          key={item.itemId}
+          onClick={() => {
+            navigate("/loading", {
+              state: { itemId: item.itemId, fortuneItems: fortune },
+            });
+          }}
+        >
           <img
-            src={item.img}
-            style={{ width: '130px', height: '130px' }}
+            src={item.itemPhoto}
+            style={{ width: "130px", height: "130px", borderRadius: "5px" }}
             alt={item.name}
           />
           <ItemName>{item.name}</ItemName>
           <ItemPrice>{item.price}</ItemPrice>
-          <ItemDelivery>{item.delivery}</ItemDelivery>
         </HotItemPiece>
       ))}
     </HotItemBox>
   );
-}
+};
 
 const HotItemBox = styled.div`
   width: 359px;
-  height: 185px;
   display: flex;
   gap: 11px;
   overflow-x: scroll;
+  /* Hide horizontal scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
 `;
 
 const HotItemPiece = styled.div`
   width: 130px;
-  height: 185px;
 `;
 
 const ItemName = styled.div`
   color: #000;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Pretendard";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -68,7 +83,7 @@ const ItemName = styled.div`
 
 const ItemPrice = styled.div`
   color: #000;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Pretendard";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -76,12 +91,4 @@ const ItemPrice = styled.div`
   letter-spacing: 0.012px;
 `;
 
-const ItemDelivery = styled.div`
-  color: #f90;
-  font-family: 'Noto Sans', sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.012px;
-`;
+export default HotItem;

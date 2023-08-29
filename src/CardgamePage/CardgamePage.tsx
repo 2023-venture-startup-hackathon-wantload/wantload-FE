@@ -2,13 +2,45 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../Home/components/Header";
 import Card from "./components/Card";
-import { ReactComponent as Clock } from "../assets/icon/icon_clock.svg";
+// import { ReactComponent as Clock } from "../assets/icon/icon_clock.svg";
 import { getRandomCards } from "../data/function";
-import NextButton from "./components/NextButton";
-import { useLocation } from "react-router-dom";
+// import EnabledButton from "./components/EnabledButton";
 import { FortuneProductData } from "../data/type";
+import { getNowWaitingPosition } from "../api/waitingRoomController";
+import NextButton from "./components/NextButton";
+import { useNavigate } from "react-router-dom";
 
-const CardgamePage = () => {
+const CardgamePage = ({
+  itemId,
+  initPos,
+  fortuneItems,
+}: {
+  itemId: number;
+  initPos: number;
+  fortuneItems: FortuneProductData[];
+}) => {
+  const navigate = useNavigate();
+  console.log("CARDGAME ID : ", itemId);
+  console.log("fortuneItems:", fortuneItems);
+  console.log("initPos:", initPos);
+  const [waitingPosition, setWaitingPosition] = useState<number>(initPos);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const response = await getNowWaitingPosition(waitingPosition);
+      setWaitingPosition(response);
+      console.log("FORTUNE LOG : ", response);
+
+      if (response === 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [waitingPosition]);
+
+  //게임 관련
   const MINUTES_IN_MS = 0.5 * 60 * 1000;
   const INITIAL_SAME_CARD_COUNT = 0;
   const INTERVAL = 1000;
@@ -23,14 +55,11 @@ const CardgamePage = () => {
     INITIAL_SAME_CARD_COUNT,
   );
   const [correctCard, setCorrectCard] = useState<number[]>([]);
-  const location = useLocation();
-  const fortuneItems: FortuneProductData[] = location.state.fortuneItems;
-  console.log("fortuneItems:", fortuneItems);
-  const minutes = String(Math.floor((time / (1000 * 60)) % 60)).padStart(
-    2,
-    "0",
-  );
-  const second = String(Math.floor((time / 1000) % 60)).padStart(2, "0");
+  // const minutes = String(Math.floor((time / (1000 * 60)) % 60)).padStart(
+  //   2,
+  //   "0",
+  // );
+  // const second = String(Math.floor((time / 1000) % 60)).padStart(2, "0");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -94,22 +123,23 @@ const CardgamePage = () => {
       <Header />
       <CardgameInfo>
         <div className="cardgame-header">
-          <div className="time">
+          {/* <div className="time">
             <Clock />
             <div className="time-text">
               {minutes}:{second}
             </div>
-          </div>
+          </div> */}
           <div className="score">
             <div>현재 스코어</div>
             <div className="score-num">{sameCardCount}</div>
           </div>
         </div>
-        <div className="title">카드 뒤집기를 해보세요.</div>
+        <div className="sub-title">제한 시간 내에 같은 카드를 찾아보세요.</div>
+        <div className="title">카드 뒤집기 게임</div>
         <CardContainer>
           {cardList.map((item, index) => (
             <Card
-              card={item}
+              img={fortuneItems[item].fortunePhoto}
               key={index}
               isFlipped={
                 (firstCardIndex !== null &&
@@ -120,7 +150,13 @@ const CardgamePage = () => {
             />
           ))}
         </CardContainer>
-        {time === 0 && <NextButton />}
+        <NextButton
+          isAbled={waitingPosition <= 0}
+          text={waitingPosition.toString()}
+          onClick={() => {
+            navigate(`/product/${itemId}`);
+          }}
+        />
       </CardgameInfo>
     </>
   );
@@ -161,8 +197,14 @@ const CardgameInfo = styled.div`
     }
   }
 
+  & .sub-title {
+    margin-top: 20px;
+    margin-bottom: 9px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
   & .title {
-    margin-top: 14px;
     margin-bottom: 9px;
     font-size: 22px;
     font-weight: 600;
@@ -172,6 +214,7 @@ const CardgameInfo = styled.div`
 const CardContainer = styled.div`
   display: grid;
   width: 100%;
+  margin-top: 54px;
   margin-bottom: 20px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 92px);
