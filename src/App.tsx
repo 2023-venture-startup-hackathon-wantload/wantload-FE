@@ -1,6 +1,7 @@
 import React from 'react';
 // import Puzzle from './components/Puzzle';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CardgamePage from './CardgamePage/CardgamePage';
 import Home from './Home/Home';
 
 const App: React.FC = () => {
@@ -9,6 +10,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cardgame" element={<CardgamePage />} />
         </Routes>
       </BrowserRouter>
     </>
