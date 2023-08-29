@@ -46,7 +46,7 @@ const TabButton = styled.button<{ isselected: boolean }>`
     props.isselected ? "2px solid #ff9900" : "1px solid #d9d9d9"};
   color: ${(props) => (props.isselected ? "#ff9900" : "#D9D9D9")};
   text-align: center;
-  font-family: Noto Sans;
+  font-family: "Pretendard";
   font-size: 12px;
   font-style: normal;
   font-weight: ${(props) => (props.isselected ? 700 : 600)};

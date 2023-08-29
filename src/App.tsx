@@ -1,10 +1,10 @@
 import React from "react";
 // import Puzzle from './components/Puzzle';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CardgamePage from "./CardgamePage/CardgamePage";
-import FortuneResultPage from "./FortuneResultPage/FortuneResultPage";
+import DetailPage from "./DetailPage/DetailPage";
 import Home from "./Home/Home";
-import Fortune from "./Fortune/Fortune";
+import LeaderBoardPage from "./ReaderBoardPage/ReaderBoardPage";
+import LoadingPage from "./LoadingPage/LoadingPage";
 
 const App: React.FC = () => {
   return (
@@ -12,9 +12,9 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/fortune" element={<Fortune />} />
-          <Route path="/fortune/result" element={<FortuneResultPage />} />
-          <Route path="/cardgame" element={<CardgamePage />} />
+          <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/product/:id" element={<DetailPage />} />
+          <Route path="/event" element={<LeaderBoardPage />} />
         </Routes>
       </BrowserRouter>
     </>

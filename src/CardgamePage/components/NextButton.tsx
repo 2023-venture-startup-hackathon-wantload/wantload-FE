@@ -1,23 +1,20 @@
-import React from 'react';
-import Button from '@mui/material/Button';
+import React from "react";
+import DisabledButton from "./DisabledButton";
+import EnabledButton from "./EnabledButton";
 
-const NextButton = () => {
-  return (
-    <Button
-      variant="contained"
-      fullWidth
-      disableElevation
-      sx={{
-        color: 'white',
-        height: '50px',
-        fontWeight: 600,
-        fontSize: '18px',
-        backgroundColor: '#FF9900',
-        ':hover': { backgroundColor: '#FFC266' },
-      }}
-    >
-      상세페이지 확인하기
-    </Button>
+const NextButton = ({
+  isAbled,
+  text,
+  onClick,
+}: {
+  isAbled: boolean;
+  text: string;
+  onClick: () => void;
+}) => {
+  return isAbled ? (
+    <EnabledButton text={text} onClick={onClick} />
+  ) : (
+    <DisabledButton text={text} />
   );
 };
 

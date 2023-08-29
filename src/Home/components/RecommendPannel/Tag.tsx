@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { CATEGORY_TYPE } from "../../../data/type";
 
-export default function Tag() {
-  const TagList = [
+export default function Tag({
+  isSelected,
+  setIsSelected,
+}: {
+  isSelected: string;
+  setIsSelected: (item: CATEGORY_TYPE) => void;
+}) {
+  const TagList: { id: number; name: string; eng: CATEGORY_TYPE }[] = [
     { id: 1, name: "가전", eng: "HOME" },
     { id: 2, name: "식품", eng: "FOOD" },
     { id: 3, name: "뷰티", eng: "BEAUTY" },
@@ -10,18 +17,14 @@ export default function Tag() {
     { id: 5, name: "취미", eng: "HOBBY" },
   ];
 
-  const [selectedTag, setSelectedTag] = useState("가전");
-
   return (
     <TagBox>
       {TagList.map((item, index) => (
         <TagContainer>
           <TagItem
             key={index}
-            isselectedcharacter={selectedTag === item.name}
-            onClick={() => {
-              setSelectedTag(item.name);
-            }}
+            isselectedcharacter={isSelected === item.eng}
+            onClick={() => setIsSelected(item.eng)}
           >
             <TagEnglish>{item.eng}</TagEnglish>
           </TagItem>
@@ -56,15 +59,16 @@ const TagItem = styled.button<{ isselectedcharacter: boolean }>`
   width: 55px;
   height: 55px;
   border-radius: 17px;
-  border: 0.5px solid #ff9900;
   color: #ffffff;
   text-align: center;
   font-family: "Noto Sans", sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 140%;
-  background: #ff9900;
   cursor: pointer;
+
+  background-color: ${({ isselectedcharacter }) =>
+    isselectedcharacter ? "rgba(255, 153, 0, 1)" : "rgba(255, 153, 0, 0.4)"};
 `;
 
 const TagEnglish = styled.div`
