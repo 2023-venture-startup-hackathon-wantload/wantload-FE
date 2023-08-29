@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Header: React.FC = () => {
   return (
     <StyledHeader>
-      <div>JinYoung</div>
+      <HeaderIcon>JinYoung</HeaderIcon>
     </StyledHeader>
   );
 };
@@ -17,13 +17,22 @@ const StyledHeader = styled.div`
   margin: 0 auto;
   min-width: 375px;
   max-width: 450px;
-  height: 45px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 16px;
+  height: 54px;
   border-bottom: 1px solid #f0f0f0;
-  background: #ff9900;
+  background-color: #ff9900;
+  display: flex;
+  padding: 12px 12px 12px 14px;
+`;
+
+const HeaderIcon = styled.div`
+  color: #fff;
+  // font-family 미적용
+  /* font-family: Righteous; */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.024px;
 `;
 
 export default Header;
