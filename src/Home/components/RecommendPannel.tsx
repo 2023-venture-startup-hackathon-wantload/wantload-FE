@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import ItemSwiper from './RecommendPannel/ItemSwiper';
-import Tag from './RecommendPannel/Tag';
-import HotItem from './RecommendPannel/HotItem';
+import styled from "styled-components";
+import ItemSwiper from "./RecommendPannel/ItemSwiper";
+import Tag from "./RecommendPannel/Tag";
+import HotItem from "./RecommendPannel/HotItem";
 
 export default function RecommendPannel() {
   return (
@@ -13,14 +13,14 @@ export default function RecommendPannel() {
       <HotItemContainer>
         <div
           style={{
-            color: '#000',
-            fontFamily: 'Noto Sans',
-            fontSize: '18px',
-            fontStyle: 'normal',
+            color: "#000",
+            fontFamily: "Noto Sans",
+            fontSize: "18px",
+            fontStyle: "normal",
             fontWeight: 600,
-            lineHeight: 'normal',
-            letterSpacing: '0.018px',
-            marginBottom: '13px',
+            lineHeight: "normal",
+            letterSpacing: "0.018px",
+            marginBottom: "13px",
           }}
         >
           블랙프라이데이 인기 상품
@@ -43,7 +43,7 @@ const StyledRecommendPannel = styled.div`
 
 const SwiperContainer = styled.div`
   width: 375px;
-  display: 'flex';
+  display: "flex";
   padding: 22px;
   /* justify-content: 'center';
   align-items: 'center'; */

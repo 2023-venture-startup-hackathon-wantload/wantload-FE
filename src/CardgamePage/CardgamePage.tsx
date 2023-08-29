@@ -5,8 +5,8 @@ import Card from "./components/Card";
 import { ReactComponent as Clock } from "../assets/icon/icon_clock.svg";
 import { getRandomCards } from "../data/function";
 import NextButton from "./components/NextButton";
-import { useRecoilState } from "recoil";
-import { fortuneItemList } from "../recoil/fortuneItemList";
+import { useLocation } from "react-router-dom";
+import { FortuneProductData } from "../data/type";
 
 const CardgamePage = () => {
   const MINUTES_IN_MS = 0.5 * 60 * 1000;
@@ -23,7 +23,8 @@ const CardgamePage = () => {
     INITIAL_SAME_CARD_COUNT,
   );
   const [correctCard, setCorrectCard] = useState<number[]>([]);
-  const [fortuneItems, setFortuneItems] = useRecoilState(fortuneItemList);
+  const location = useLocation();
+  const fortuneItems: FortuneProductData[] = location.state.fortuneItems;
   console.log("fortuneItems:", fortuneItems);
   const minutes = String(Math.floor((time / (1000 * 60)) % 60)).padStart(
     2,
@@ -40,7 +41,6 @@ const CardgamePage = () => {
       clearInterval(timer);
       console.log("게임이 종료되었습니다.");
       console.log(sameCardCount);
-      setFortuneItems(fortuneItems);
     }
     return () => {
       clearInterval(timer);

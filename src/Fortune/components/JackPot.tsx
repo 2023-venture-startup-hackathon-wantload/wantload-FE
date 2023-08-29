@@ -1,5 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import { useNavigate } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
 
 export default function JackPot() {
   const navigate = useNavigate();
@@ -8,15 +8,15 @@ export default function JackPot() {
     <StyledJackPot>
       <JackPotItem
         src="/assets/swiper/swiper1.jpeg"
-        onClick={() => navigate('/fortuneResult')}
+        onClick={() => navigate("/fortuneResult")}
       />
       <JackPotItem2
         src="/assets/swiper/swiper2.jpeg"
-        onClick={() => navigate('/fortuneResult')}
+        onClick={() => navigate("/fortuneResult")}
       />
       <JackPotItem
         src="/assets/swiper/swiper3.jpeg"
-        onClick={() => navigate('/fortuneResult')}
+        onClick={() => navigate("/fortuneResult")}
       />
     </StyledJackPot>
   );
