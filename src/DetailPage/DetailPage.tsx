@@ -60,7 +60,9 @@ const DetailPage = () => {
           출발예정 <span>지금 주문하면 내일 출발</span>
         </div>
       </div>
-      <EnabledButton text="구매하기" onClick={() => {}} />
+      <div style={{ width: "100%" }}>
+        <EnabledButton text="구매하기" onClick={() => {}} />
+      </div>
     </DetailComponent>
   ) : (
     <div>데이터 오류</div>
