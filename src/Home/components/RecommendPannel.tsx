@@ -47,6 +47,7 @@ export default function RecommendPannel() {
             lineHeight: "normal",
             letterSpacing: "0.018px",
             marginBottom: "13px",
+            marginTop: "13px",
           }}
         >
           블랙프라이데이 인기 상품

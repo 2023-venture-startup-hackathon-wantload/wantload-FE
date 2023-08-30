@@ -122,20 +122,18 @@ const CardgamePage = ({
     <>
       <Header />
       <CardgameInfo>
-        <div className="cardgame-header">
-          {/* <div className="time">
-            <Clock />
-            <div className="time-text">
-              {minutes}:{second}
+        <div className="area">
+          <div className="cardgame-header">
+            <div className="score">
+              <div>현재 스코어</div>
+              <div className="score-num">{sameCardCount}</div>
             </div>
-          </div> */}
-          <div className="score">
-            <div>현재 스코어</div>
-            <div className="score-num">{sameCardCount}</div>
           </div>
+          <div className="sub-title">
+            제한 시간 내에 같은 카드를 찾아보세요.
+          </div>
+          <div className="title">카드 뒤집기 게임</div>
         </div>
-        <div className="sub-title">제한 시간 내에 같은 카드를 찾아보세요.</div>
-        <div className="title">카드 뒤집기 게임</div>
         <CardContainer>
           {cardList.map((item, index) => (
             <Card
@@ -163,13 +161,22 @@ const CardgamePage = ({
 };
 
 const CardgameInfo = styled.div`
-  margin-top: 128px;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-weight: 500;
   font-size: 18px;
+  padding: 108px 16px 16px 16px;
+
+  & .area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   & .cardgame-header {
     display: flex;
@@ -198,7 +205,7 @@ const CardgameInfo = styled.div`
   }
 
   & .sub-title {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 9px;
     font-size: 16px;
     font-weight: 500;
@@ -213,12 +220,13 @@ const CardgameInfo = styled.div`
 
 const CardContainer = styled.div`
   display: grid;
-  width: 100%;
+  align-items: center;
   margin-top: 54px;
   margin-bottom: 20px;
-  grid-template-columns: repeat(4, 1fr);
+  margin: 54px auto 20px auto;
+  grid-template-columns: repeat(4, 72px);
   grid-template-rows: repeat(4, 92px);
-  gap: 10px;
+  gap: 15px;
 `;
 
 export default CardgamePage;

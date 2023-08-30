@@ -11,18 +11,15 @@ const EnabledButton = ({
   return (
     <Button
       variant="contained"
-      fullWidth
       disableElevation
       sx={{
         color: "white",
-        height: "60px",
+        height: "100%",
         fontWeight: 600,
         fontSize: "18px",
         backgroundColor: "#FF9900",
-        position: "absolute",
-        minWidth: "375px",
-        maxWidth: "450px",
-        bottom: 20,
+        width: "100%",
+        padding: 0,
         ":hover": { backgroundColor: "#FFC266" },
       }}
       onClick={onClick}

@@ -21,6 +21,15 @@ export default function ItemSwiper() {
     >
       <SwiperSlide>
         <img
+          src="/assets/swiper/swiper3.png"
+          style={{ width: "375px", height: "358px" }}
+          onClick={() => {
+            navigate("/event");
+          }}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img
           src="/assets/swiper/swiper1.png"
           style={{ width: "375px", height: "358px" }}
         />
@@ -29,15 +38,6 @@ export default function ItemSwiper() {
         <img
           src="/assets/swiper/swiper2.png"
           style={{ width: "375px", height: "358px" }}
-        />
-      </SwiperSlide>
-      <SwiperSlide>
-        <img
-          src="/assets/swiper/swiper3.png"
-          style={{ width: "375px", height: "358px" }}
-          onClick={() => {
-            navigate("/event");
-          }}
         />
       </SwiperSlide>
     </Swiper>
