@@ -165,9 +165,9 @@ const CardgameInfo = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   font-weight: 500;
   font-size: 18px;
+  margin-bottom: 100px;
   padding: 108px 16px 16px 16px;
   position: relative;
 
@@ -223,7 +223,6 @@ const CardContainer = styled.div`
   display: grid;
   align-items: center;
   margin-top: 54px;
-  margin-bottom: 100px;
   margin: 54px auto 20px auto;
   grid-template-columns: repeat(4, 72px);
   grid-template-rows: repeat(4, 92px);

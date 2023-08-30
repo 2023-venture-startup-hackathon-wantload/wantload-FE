@@ -13,7 +13,6 @@ const DisabledButton = ({ text }: { text: string }) => {
         height: "100%",
         fontWeight: 600,
         fontSize: "18px",
-        backgroundColor: "#FF9900",
         width: "100%",
         padding: 0,
       }}
