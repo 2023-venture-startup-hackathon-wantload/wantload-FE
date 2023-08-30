@@ -24,7 +24,7 @@ const LoadingPage = () => {
     return <div>Loading..</div>;
   }
   return data !== undefined ? (
-    data.userNum > 100 ? (
+    data.userNum > 500 ? (
       <CardgamePage
         itemId={itemId}
         initPos={data.userNum}

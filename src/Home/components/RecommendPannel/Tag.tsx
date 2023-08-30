@@ -28,7 +28,9 @@ export default function Tag({
           >
             <TagEnglish>{item.eng}</TagEnglish>
           </TagItem>
-          <TagName>{item.name}</TagName>
+          <TagName isselectedcharacter={isSelected === item.eng}>
+            {item.name}
+          </TagName>
         </TagContainer>
       ))}
     </TagBox>
@@ -37,7 +39,6 @@ export default function Tag({
 
 const TagBox = styled.div`
   width: 375px;
-  height: 109px;
   overflow-x: scroll;
   padding: 12px;
   display: flex;
@@ -81,12 +82,13 @@ const TagEnglish = styled.div`
   letter-spacing: 0.012px;
 `;
 
-const TagName = styled.div`
-  color: #f90;
+const TagName = styled.div<{ isselectedcharacter: boolean }>`
   font-family: Pretendard;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.013px;
+  color: ${({ isselectedcharacter }) =>
+    isselectedcharacter ? "rgba(255, 153, 0, 1)" : "rgba(255, 153, 0, 0.4)"};
 `;
