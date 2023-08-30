@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../Home/components/Header";
 import { FortuneProductData, FORTUNE_TYPE } from "../data/type";
 import Heart from "../assets/icon/icon_love.svg";
 import Money from "../assets/icon/icon_money.svg";
@@ -30,7 +29,6 @@ const FortuneResultPage = ({
 
   return (
     <div style={{ height: "100%", width: "100%" }}>
-      <Header />
       <FortuneResultContainer>
         <FortuneResultArea>
           <img
@@ -75,6 +73,7 @@ const FortuneResultArea = styled.div`
   & .fortune-img {
     width: 90px;
     height: 90px;
+    margin-top: 50px;
   }
   & .fortune-header {
     display: flex;
@@ -130,6 +129,7 @@ const FortuneResultArea = styled.div`
       font-size: 13px;
       font-weight: 400;
       white-space: pre-wrap;
+      margin-bottom: 100px;
     }
   }
 `;

@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <StyledHeader>
-      <HeaderIcon src="/assets/icons/logo.svg" />
+      <HeaderIcon
+        src="/assets/icons/logo.svg"
+        onClick={() => {
+          navigate("/");
+        }}
+      />
       <HeaderNavigation>
         <img
           src="/assets/icons/menu.svg"
@@ -38,6 +45,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 19px;
+  z-index: 5;
 `;
 
 const HeaderIcon = styled.img`

@@ -12,7 +12,16 @@ const NextButton = ({
   onClick: () => void;
 }) => {
   return (
-    <div style={{ width: "100%", height: "60px", position: "relative" }}>
+    <div
+      style={{
+        width: "auto",
+        height: "60px",
+        position: "absolute",
+        bottom: "20px",
+        left: 20,
+        right: 20,
+      }}
+    >
       {isAbled ? (
         <EnabledButton text={text} onClick={onClick} />
       ) : (

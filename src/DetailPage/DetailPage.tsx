@@ -76,6 +76,7 @@ const DetailComponent = styled.div`
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 
   & .area {
     display: flex;
@@ -116,14 +117,15 @@ const DetailComponent = styled.div`
       font-size: 22px;
       font-weight: 500;
       display: flex;
+      flex-direction: column;
       width: 100%;
-      justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
 
       & .score {
         display: grid;
         grid-template-columns: repeat(5, 18px);
         column-gap: 3px;
+        margin-bottom: 10px;
       }
     }
 
@@ -153,7 +155,7 @@ const DetailComponent = styled.div`
     }
 
     & .sub-content {
-      margin-top: 19px;
+      margin-top: 10px;
       font-size: 12px;
       font-weight: 400;
       color: #868686;

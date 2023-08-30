@@ -169,6 +169,7 @@ const CardgameInfo = styled.div`
   font-weight: 500;
   font-size: 18px;
   padding: 108px 16px 16px 16px;
+  position: relative;
 
   & .area {
     width: 100%;
@@ -222,7 +223,7 @@ const CardContainer = styled.div`
   display: grid;
   align-items: center;
   margin-top: 54px;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
   margin: 54px auto 20px auto;
   grid-template-columns: repeat(4, 72px);
   grid-template-rows: repeat(4, 92px);
