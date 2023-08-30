@@ -53,13 +53,13 @@ const Fortune = ({
       <Header />
       <FortuneWrapper>
         {fortuneClicked === null ? (
-          <>
+          <div style={{ width: "100%", marginBottom: "100px" }}>
             <JackpotGuide>
               <GuideText>당신에게 찾아온 깜짝 선물</GuideText>
               <GuideTextBold>오늘의 행운을 잡아보세요</GuideTextBold>
             </JackpotGuide>
             <Jackpot fortune={fortuneItems} setClick={handleFortuneClicked} />
-          </>
+          </div>
         ) : (
           <FortuneResultPage fortune={fortuneClicked} itemList={fortuneList} />
         )}
@@ -83,13 +83,15 @@ const FortuneWrapper = styled.div`
   padding-top: 54px;
   margin: 0 auto;
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
   /* justify-content: center; */
   align-items: center;
+  position: relative;
 `;
 
 const JackpotGuide = styled.div`
-  width: 315px;
   height: 95px;
   color: #000;
   font-family: "Noto Sans", sans-serif;
@@ -97,7 +99,6 @@ const JackpotGuide = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 250px;
 `;
 
 const GuideText = styled.div`

@@ -60,7 +60,7 @@ export default function RecommendPannel() {
 
 const StyledRecommendPannel = styled.div`
   min-width: 375px;
-  max-width: 450px;
+  max-width: 375px;
   height: 714px;
   display: flex;
   flex-direction: column;

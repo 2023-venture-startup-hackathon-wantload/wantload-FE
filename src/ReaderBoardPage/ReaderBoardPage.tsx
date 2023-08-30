@@ -63,6 +63,7 @@ const LeaderBoardContainer = styled.div`
   background-color: #000000;
   display: flex;
   flex-direction: column;
+  padding-bottom: 60px;
 
   & .banner {
     width: 100%;

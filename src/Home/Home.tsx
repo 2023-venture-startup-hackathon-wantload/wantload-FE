@@ -28,7 +28,7 @@ const HomeWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding-top: 54px;
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
