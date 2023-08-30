@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export default function NewPannel() {
   return (
     <StyledNewPannel>
       <img
         src="/assets/icons/waiting.svg"
-        style={{ width: '20px', marginBottom: '20px' }}
+        style={{ width: "20px", marginBottom: "20px" }}
       />
       <Comment>아직 서비스 준비 중입니다.</Comment>
     </StyledNewPannel>
