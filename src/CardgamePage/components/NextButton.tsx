@@ -11,10 +11,14 @@ const NextButton = ({
   text: string;
   onClick: () => void;
 }) => {
-  return isAbled ? (
-    <EnabledButton text={text} onClick={onClick} />
-  ) : (
-    <DisabledButton text={text} />
+  return (
+    <div style={{ width: "100%", height: "60px", position: "relative" }}>
+      {isAbled ? (
+        <EnabledButton text={text} onClick={onClick} />
+      ) : (
+        <DisabledButton text={text} />
+      )}
+    </div>
   );
 };
 

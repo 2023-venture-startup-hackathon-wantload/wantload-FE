@@ -4,10 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getItemDetail } from "../api/itemController";
 import { ReactComponent as LeftArrow } from "../assets/icon/icon_arrow_left.svg";
-import EnabledButton from "../CardgamePage/components/EnabledButton";
 import { ProductDeatil } from "../data/type";
 import { ReactComponent as StarFill } from "../assets/icon/icon_star_fill.svg";
 import { ReactComponent as StarEmpty } from "../assets/icon/icon_star_empty.svg";
+import NextButton from "../CardgamePage/components/NextButton";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -27,42 +27,42 @@ const DetailPage = () => {
 
   return data ? (
     <DetailComponent>
-      <div className="prev-header">
-        <LeftArrow
-          onClick={() => {
-            navigate("/");
-          }}
-        />
-      </div>
-      <img className="product-img" src={data.itemPhoto} />
-      <div className="product-body">
-        <div className="market">{data.company}</div>
-        <div className="name-score">
-          <div>{data.name}</div>
-          <div className="score">
-            {[...Array(data.starPoint)].map((_, index) => (
-              <StarFill key={`filled-${index}`} />
-            ))}
-            {[...Array(5 - data.starPoint)].map((_, index) => (
-              <StarEmpty key={`empty-${index}`} />
-            ))}
+      <div className="area">
+        <div className="prev-header">
+          <LeftArrow
+            onClick={() => {
+              navigate("/");
+            }}
+          />
+        </div>
+        <img className="product-img" src={data.itemPhoto} />
+        <div className="product-body">
+          <div className="market">{data.company}</div>
+          <div className="name-score">
+            <div>{data.name}</div>
+            <div className="score">
+              {[...Array(data.starPoint)].map((_, index) => (
+                <StarFill key={`filled-${index}`} />
+              ))}
+              {[...Array(5 - data.starPoint)].map((_, index) => (
+                <StarEmpty key={`empty-${index}`} />
+              ))}
+            </div>
+          </div>
+          <div className="price">
+            <div className="percentage">{`${data.discount}%`}</div>
+            <div className="price-result">{data.sellPrice}</div>
+            <div className="price-original">{data.oringinPrice}</div>
+          </div>
+          <div className="sub-content">
+            배송정보 <span>샥-배송</span>
+          </div>
+          <div className="sub-content">
+            출발예정 <span>지금 주문하면 내일 출발</span>
           </div>
         </div>
-        <div className="price">
-          <div className="percentage">{`${data.discount}%`}</div>
-          <div className="price-result">{data.sellPrice}</div>
-          <div className="price-original">{data.oringinPrice}</div>
-        </div>
-        <div className="sub-content">
-          배송정보 <span>샥-배송</span>
-        </div>
-        <div className="sub-content">
-          출발예정 <span>지금 주문하면 내일 출발</span>
-        </div>
       </div>
-      <div style={{ width: "100%" }}>
-        <EnabledButton text="구매하기" onClick={() => {}} />
-      </div>
+      <NextButton isAbled={true} text={"구매하기"} onClick={() => {}} />
     </DetailComponent>
   ) : (
     <div>데이터 오류</div>
@@ -75,6 +75,14 @@ const DetailComponent = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
+  justify-content: space-between;
+
+  & .area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
 
   & .prev-header {
     width: 100%;

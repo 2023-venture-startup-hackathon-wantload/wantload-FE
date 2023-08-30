@@ -10,13 +10,12 @@ const DisabledButton = ({ text }: { text: string }) => {
       disabled
       sx={{
         color: "white",
-        height: "60px",
+        height: "100%",
         fontWeight: 600,
         fontSize: "18px",
-        position: "absolute",
-        minWidth: "375px",
-        maxWidth: "450px",
-        bottom: 20,
+        backgroundColor: "#FF9900",
+        width: "100%",
+        padding: 0,
       }}
     >
       {text}
