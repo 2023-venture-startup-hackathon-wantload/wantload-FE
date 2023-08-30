@@ -2,7 +2,6 @@ import styled from "styled-components";
 import ItemSwiper from "./RecommendPannel/ItemSwiper";
 import Tag from "./RecommendPannel/Tag";
 import HotItem from "./RecommendPannel/HotItem";
-import Bullet from "./RecommendPannel/Bullet";
 import { useEffect, useState } from "react";
 import { CATEGORY_TYPE, FortuneProductData } from "../../data/type";
 import { useQuery } from "react-query";
@@ -36,9 +35,6 @@ export default function RecommendPannel() {
       <SwiperContainer>
         <ItemSwiper />
       </SwiperContainer>
-      <PaginationContainer>
-        <Bullet />
-      </PaginationContainer>
       <Tag isSelected={category} setIsSelected={setCategory} />
       <HotItemContainer>
         <div
@@ -74,19 +70,10 @@ const StyledRecommendPannel = styled.div`
 const SwiperContainer = styled.div`
   width: 100%;
   display: flex;
-  padding: 22px;
+  padding: 22px 0 10px 0;
   /* justify-content: 'center';
   align-items: 'center'; */
   /* background: yellow; */
-`;
-
-const PaginationContainer = styled.div`
-  width: 100%;
-  height: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background: red; */
 `;
 
 const HotItemContainer = styled.div`
